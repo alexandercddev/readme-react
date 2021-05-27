@@ -12,51 +12,55 @@ import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';  
+import { 
+  IconButton, 
+  Button 
+} from '@material-ui/core';  
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText'; 
 import { 
   Menu as MenuIcon, 
+  Home as HomeIcon, 
   ChevronLeft as ChevronLeftIcon,
-  ChevronRight as ChevronRightIcon,
-  Home as HomeIcon,
+  ChevronRight as ChevronRightIcon, 
   Info as InfoIcon,
   Folder as FolderIco,
   ContactPhone as ContactPhoneIcon,
-  Description as DescriptionIcon
-} from '@material-ui/icons/'; 
+  Description as DescriptionIcon,
+  Copyright as CopyrightIcon
+} from '@material-ui/icons/';  
 import Avatar from '@material-ui/core/Avatar';
-import HomeCard from '../home/Index.js';
-
-
+import HomeCard from '../home/Index.js'; 
+import AboutMe from '../about-me/Index.js'; 
+import Proyects from '../proyects/Index.js'; 
 /** Items del menu **/
 const items = [
   {
     key: 'home',
-    name: 'Home',
+    name: 'Principal',
     icon: <HomeIcon /> 
-  },
+  }, 
   {
     key: 'about-me',
-    name: 'About me',
+    name: 'Sobre mí',
     icon: <InfoIcon /> 
   }, 
   {
     key: 'proyects',
-    name: 'Proyects',
+    name: 'Proyectos',
     icon: <FolderIco /> 
   },
   {
     key: 'resources',
-    name: 'Resources',
+    name: 'Recursos',
     icon: <DescriptionIcon /> 
   },
   {
     key: 'contact',
-    name: 'Contact',
+    name: 'Contacto',
     icon: <ContactPhoneIcon /> 
-  },
+  }
 ];
 
 /** Clase portafolio **/
@@ -66,7 +70,9 @@ export class Briefcase extends Component {
     this.state = { 
       classes: this.props.classes,
       open: false,
-      theme: this.props.theme
+      theme: this.props.theme,
+      year: (new Date().getFullYear()),
+      component: "home",
     }; 
   }
 
@@ -87,36 +93,48 @@ export class Briefcase extends Component {
     this.setState({open: false});
   }
 
+  /** Acción clic cerrar menu **/
+  handleClickItem (name) {
+    this.setState({component: name})
+  }
+
+  /** Render views **/
+  renderComponent () {
+    let {component} = this.state;
+    let {classesCard} = this.props;
+    switch (component) {
+      case "home":
+        return <HomeCard classes = {classesCard}/>;
+      case "about-me":
+        return <AboutMe classes = {classesCard}/>;
+      case "proyects":
+        return <Proyects classes = {classesCard}/>;
+      case "resources":
+        //return <AboutMe classes = {classesCard}/>;
+      case "contact":
+        //return <AboutMe classes = {classesCard}/>;
+      default:
+        break;
+    }
+  }
   render(){
     console.info("render") 
     return (
-      <div className={this.state.classes.root}>
+      <div className={this.state.classes.root}> 
       <CssBaseline />
       <AppBar
         position="fixed"
         className={clsx(this.state.classes.appBar, {
           [this.state.classes.appBarShift]: this.state.open,
         })}
-      >
+      >  
         <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={this.handleDrawerOpen}
-            edge="start"
-            className={clsx(this.state.classes.menuButton, this.state.open && this.state.classes.hide)}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap>
-            AlexanderCD
-          </Typography>
-          <div>
             <IconButton
               aria-label="Logo de AlexanderCD"
               aria-controls="menu-appbar"
-              aria-haspopup="true" 
+              aria-haspopup="true"
               color="inherit"
+              onClick = {() =>{ this.handleClickItem('home')}}
             >
               <Avatar
                 aria-label="Logo de AlexanderCD"
@@ -125,8 +143,35 @@ export class Briefcase extends Component {
                 alt="Logo"
                 src="/img/logo.png"
               />
-            </IconButton> 
+            </IconButton>
+          <Typography 
+            variant="h6" 
+            noWrap 
+            className={this.state.classes.title}>
+            Alexander CD
+          </Typography>
+          <div 
+            className={clsx(this.state.classes.navDesktop)}>
+            {items.map((item, index) => (
+              <Button 
+                key={item.key}
+                color = "inherit"
+                onClick = {() =>{ this.handleClickItem(item.key)}}>
+                {item.name}
+              </Button>
+            ))} 
           </div>
+          
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            edge="end"
+            onClick={this.handleDrawerOpen}
+            className={
+              clsx(this.state.open && this.state.classes.hide || this.state.classes.navMobile)
+            }>
+            <MenuIcon />
+          </IconButton>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -146,22 +191,28 @@ export class Briefcase extends Component {
         <Divider />
         <List>
           {items.map((item, index) => (
-            <ListItem button key={item.key}>
+            <ListItem 
+              button key={item.key}
+              onClick = {() =>{ this.handleClickItem(item.key)}}>
               <ListItemIcon>{item.icon}</ListItemIcon>
               <ListItemText primary={item.name} />
             </ListItem>
           ))}
         </List>
         <Divider /> 
-      </Drawer>
+        <ListItem button> 
+        < ListItemIcon><CopyrightIcon/></ListItemIcon> 
+          <ListItemText primary={this.state.year + " Alexander Chi"} />
+        </ListItem>
+      </Drawer>  
       <main
         className={clsx(this.state.classes.content, {
           [this.state.classes.contentShift]: this.state.open,
         })}
-      >
-        <div className={this.state.classes.drawerHeader} />
-        <HomeCard/>
-      </main>
+      >  
+        <div className={this.state.classes.drawerHeader} /> 
+        { this.renderComponent() } 
+      </main> 
     </div>
     );
   }
