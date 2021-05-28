@@ -5,12 +5,7 @@
  **/
 import React, { Component } from 'react';
 import Card from '@material-ui/core/Card';
-import {
-    CardMedia, 
-    CardActions,
-    CardContent
-} from '@material-ui/core/'; 
-import Button from '@material-ui/core/Button';
+import {CardContent} from '@material-ui/core/';  
 import Typography from '@material-ui/core/Typography';
 import Chip from '@material-ui/core/Chip';
 import {
@@ -23,16 +18,55 @@ import {
 } from '@material-ui/icons/';
 import { Avatar } from '@material-ui/core/';  
 import Grid from '@material-ui/core/Grid';   
+import {
+    CardListImage,
+    CardComponet,
+} from '../component/Cards';
+
+/** Items de CardImage en component **/
+const items = [
+    {
+        title: "GitHub",
+        img: "/img/github.jpg",
+        buttons: [
+            {
+                text: "GitHub",
+                url: "https://github.com/AlexanderCDs/",
+                icon: <GitHubIcon />, 
+            }
+        ]
+    },
+    {
+        title: "LinkedIn",
+        img: "/img/linkedin.jpg",
+        buttons: [
+            {
+                text: "LinkedIn",
+                url: "https://www.linkedin.com/in/alexander-arturo-chi-dominguez-15a3a5186/", 
+                icon: <LinkedInIcon />,
+                color: "primary"
+            }, 
+        ]
+    },
+    {
+        title: "YouTube",
+        img: "/img/youtube.jpg",
+        buttons: [
+            {
+                text: "YouTube",
+                url: "https://www.youtube.com/channel/UCmXXKj2lTr8J1zh3KCTj2XQ?sub_confirmation=1", 
+                icon: <YouTubeIcon />,
+                color: "secondary"
+            }, 
+        ]
+    }
+];
 
 /** Clase Sobre mí **/
 export class AboutMe extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            youTube: "https://www.youtube.com/channel/UCmXXKj2lTr8J1zh3KCTj2XQ?sub_confirmation=1",
-            gitHub: "https://github.com/AlexanderCDs",
-            linkedIn: "https://www.linkedin.com/in/alexander-arturo-chi-dominguez-15a3a5186/"
-        };
+        this.state = { };
     }
 
     /** Método del ciclos de vida de react para 
@@ -63,7 +97,7 @@ export class AboutMe extends Component {
                             alt="Logo"
                             src="/img/logo.png" />
                     </Grid>
-                    <Grid item md lg sm> 
+                    <Grid item md lg sm>  
                         <Card className={classes.aboutMe}>
                             <CardContent className={classes.content}>
                                 <Typography 
@@ -107,85 +141,23 @@ export class AboutMe extends Component {
                                 </Typography>
                             </CardContent>
                         </Card>
-                        <Card className={classes.aboutMe}>
-                            <CardContent className={classes.content}> 
-                                <Typography className={classes.content}
-                                    variant="body2"
-                                    color="textSecondary"
-                                    component="p">
-                                    Apasionado por la programación y las buenas practicas en
-                                    codificación, procuro que mis desarrollos sean adecuados,
-                                    precisos y agradables para todas las personas.
-                                </Typography>
-                            </CardContent>
-                        </Card>
-                        <Card className={classes.aboutMe}>
-                            <CardContent className={classes.content}> 
-                                <Typography className={classes.content}
-                                    variant="body2"
-                                    color="textSecondary"
-                                    component="p">
-                                    En mi tiempo libre creo contenido para quienes comienzan
-                                    en el mundo de la programación.
-                                </Typography>
-                            </CardContent>
-                        </Card>
+                        <CardComponet
+                            classes = {classes} 
+                        >
+                            Apasionado por la programación y las buenas practicas en codificación, 
+                            procuro que mis desarrollos sean adecuados, precisos y agradables para todas las personas.
+                        </CardComponet> 
+                        <CardComponet
+                            classes = {classes} 
+                        >
+                            En mi tiempo libre creo contenido para quienes 
+                            comienzan en el mundo de la programación.
+                        </CardComponet>  
                         <Grid container spacing={3}>
-                            <Grid item md lg sm xs>
-                                <Card className={classes.aboutMe}>
-                                    <CardMedia
-                                        className={classes.media}
-                                        image="/img/github.jpg"
-                                        title="GitHub"
-                                    />
-                                    <CardActions className={classes.content}>
-                                        <Button
-                                            className={classes.content}
-                                            size="small"
-                                            color="default"
-                                            onClick={() => { this.handleSocialMedia("gitHub") }}
-                                            startIcon={<GitHubIcon />}>
-                                            GitHub
-                                        </Button>
-                                    </CardActions>
-                                </Card>
-                            </Grid>
-                            <Grid item md lg sm xs>
-                                <Card className={classes.aboutMe}>
-                                    <CardMedia
-                                        className={classes.media}
-                                        image="/img/linkedIn.jpg"
-                                        title="LinkedIn"
-                                    />
-                                    <CardActions className={classes.content}>
-                                        <Button
-                                            size="small"
-                                            color="primary"
-                                            onClick={() => { this.handleSocialMedia("linkedIn") }}
-                                            startIcon={<LinkedInIcon />}>
-                                            LinkedIn
-                                        </Button>
-                                    </CardActions>
-                                </Card>
-                            </Grid>
-                            <Grid item md lg sm xs>
-                                <Card className={classes.aboutMe}>
-                                    <CardMedia
-                                        className={classes.media}
-                                        image="/img/youTube.jpg"
-                                        title="YouTube"
-                                    />
-                                    <CardActions className={classes.content}>
-                                        <Button
-                                            size="small"
-                                            color="secondary"
-                                            onClick={() => { this.handleSocialMedia("youTube") }}
-                                            startIcon={<YouTubeIcon />}>
-                                            YouTube
-                                        </Button>
-                                    </CardActions>
-                                </Card>
-                            </Grid>
+                            <CardListImage
+                                classes = {classes}
+                                items = {items}
+                            />
                         </Grid>
                     </Grid> 
                 </Grid>

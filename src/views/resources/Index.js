@@ -1,6 +1,6 @@
 /**  
  * @author: AlexanderCD
- * @description: Proyecto
+ * @description: Recursos
  * @date: 27/05/2021
 **/ 
 import React, { Component } from 'react'; 
@@ -22,25 +22,10 @@ const items = [
             }
         ]
     },
-    {
-        title: "Nuevo proyecto",
-        img: "/img/logo.png",
-        buttons: [
-            {
-                text: "Ir a Alexander CD",
-                url: "https://alexandercd.herokuapp.com/", 
-            },
-            {
-                text: "Ir al GitHub",
-                url: "https://github.com/AlexanderCDs/readme-react",
-                icon: <GitHubIcon />
-            }
-        ]
-    }
 ];
 
-/** Clase Proyectos **/
-export class Proyects extends Component {
+/** Clase Recursos **/
+export class Resources extends Component {
     constructor(props) {
         super(props);
         this.state = { };
@@ -75,4 +60,4 @@ export class Proyects extends Component {
     }
 }
 
-export default Proyects;
+export default Resources;

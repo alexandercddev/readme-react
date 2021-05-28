@@ -28,12 +28,17 @@ import {
   Folder as FolderIco,
   ContactPhone as ContactPhoneIcon,
   Description as DescriptionIcon,
-  Copyright as CopyrightIcon
+  Copyright as CopyrightIcon,
+  PhoneAndroid as PhoneAndroidIcon
 } from '@material-ui/icons/';  
 import Avatar from '@material-ui/core/Avatar';
 import HomeCard from '../home/Index.js'; 
 import AboutMe from '../about-me/Index.js'; 
 import Proyects from '../proyects/Index.js'; 
+import Contact from '../contact/Index.js'; 
+import Resources from '../resources/Index.js'; 
+import Pokedex from '../pokedex/Index.js'; 
+
 /** Items del menu **/
 const items = [
   {
@@ -52,6 +57,11 @@ const items = [
     icon: <FolderIco /> 
   },
   {
+    key: 'pokedex',
+    name: 'Pokédex',
+    icon: <PhoneAndroidIcon /> 
+  }, 
+  {
     key: 'resources',
     name: 'Recursos',
     icon: <DescriptionIcon /> 
@@ -60,7 +70,7 @@ const items = [
     key: 'contact',
     name: 'Contacto',
     icon: <ContactPhoneIcon /> 
-  }
+  }, 
 ];
 
 /** Clase portafolio **/
@@ -110,9 +120,11 @@ export class Briefcase extends Component {
       case "proyects":
         return <Proyects classes = {classesCard}/>;
       case "resources":
-        //return <AboutMe classes = {classesCard}/>;
+        return <Resources classes = {classesCard}/>;
       case "contact":
-        //return <AboutMe classes = {classesCard}/>;
+        return <Contact classes = {classesCard}/>;
+      case "pokedex":
+        return <Pokedex classes = {classesCard}/>; 
       default:
         break;
     }

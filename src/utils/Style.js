@@ -169,7 +169,13 @@
   cardAction:{
     display: 'flex',
     justifyContent:'center',
-  }
+  },
+  rootList:{
+    width: '100%',
+    maxWidth: 360,
+    maxHeight: "80vh",
+    backgroundColor: 'transparent', 
+  },
  }));
  
  export const useStyleSocial = makeStyles((theme) => ({
