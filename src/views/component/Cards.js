@@ -16,13 +16,20 @@ import {
 import { 
     WebAsset as WebAssetIcon, 
 } from '@material-ui/icons/';
-
+import SweetAlert from 'sweetalert2-react';
 
 /** Clase Card con imagen y botones **/
 export class CardListImage extends Component {
     constructor(props) {
         super(props);
-        this.state = { };
+        this.state = { 
+            show: false,
+            response: {
+                title: "",
+                message: "",
+                success: true
+            }
+        };
     }
 
     /** Método del ciclos de vida de react para 
@@ -35,6 +42,22 @@ export class CardListImage extends Component {
     /** Abrir sitio web en otra pagina **/
     handleOnClick = (url) => {
         window.open(url);
+    }
+
+    handleAlert = (params) =>{
+        if(params === undefined){
+            this.setState({ show: !this.state.show })
+        }else{
+            const {title, desciption} = params;
+            this.setState({
+                show: !this.state.show,
+                response: {
+                    title,
+                    message: desciption,
+                    success: true
+                }
+            })
+        } 
     }
 
     render() {
@@ -51,11 +74,12 @@ export class CardListImage extends Component {
                                 className={classes.media}
                                 image={item.img}
                                 title={item.title}
+                                onClick={() => { this.handleAlert(item)}}
                             />
                             <CardActions className={classes.content || classes.cardAction}>
                                 {item.buttons.map((btn, i) => (
                                     <Button
-                                        key={"btn" + index}
+                                        key={"btn" + i}
                                         className={(btn.color === undefined) && classes.content}
                                         size="small"
                                         color= {(btn.color === undefined) ? 'default' : btn.color}
@@ -66,6 +90,13 @@ export class CardListImage extends Component {
                                 ))}
                             </CardActions>
                         </Card>
+                        <SweetAlert
+                            type ={this.state.response.success ? 'info' : 'warning'}
+                            show={this.state.show}
+                            title={this.state.response.title}
+                            text={this.state.response.message}
+                            onConfirm={this.handleAlert}
+                        />
                     </Grid>
                 ))}
             </>

@@ -13,12 +13,12 @@ import CardListImage from '../component/Cards';
 /** Items de CardImage en component **/
 const items = [
     {
-        title: "Miel Roche",
+        title: "Poké API",
         img: "/img/Banner-Principal-Miel-Roche.png",
         buttons: [
             {
-                text: "Ir a Miel Roche",
-                url: "https://www.mielroche.com.mx/"
+                text: "Ir a PokéAPI",
+                url: "https://pokeapi.co/"
             }
         ]
     },
@@ -48,7 +48,7 @@ export class Resources extends Component {
             classes
         } = this.props;
         return (
-            <div id="proyects" className={classes.backGroundSeccition}>
+            <div id="resources" className={classes.backGroundSeccition}>
                 <Grid container spacing={4}>
                     <CardListImage
                         classes={classes}

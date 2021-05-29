@@ -43,8 +43,7 @@ const items = [
             {
                 text: "LinkedIn",
                 url: "https://www.linkedin.com/in/alexander-arturo-chi-dominguez-15a3a5186/", 
-                icon: <LinkedInIcon />,
-                color: "primary"
+                icon: <LinkedInIcon />, 
             }, 
         ]
     },
@@ -55,8 +54,7 @@ const items = [
             {
                 text: "YouTube",
                 url: "https://www.youtube.com/channel/UCmXXKj2lTr8J1zh3KCTj2XQ?sub_confirmation=1", 
-                icon: <YouTubeIcon />,
-                color: "secondary"
+                icon: <YouTubeIcon />, 
             }, 
         ]
     }

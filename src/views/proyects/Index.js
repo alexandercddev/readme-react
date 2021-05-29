@@ -15,6 +15,7 @@ const items = [
     {
         title: "Miel Roche",
         img: "/img/Banner-Principal-Miel-Roche.png",
+        desciption: "Sitio realizado con Wordpress",
         buttons: [
             {
                 text: "Ir a Miel Roche",
@@ -25,6 +26,7 @@ const items = [
     {
         title: "Nuevo proyecto",
         img: "/img/logo.png",
+        desciption: "Sitio realizado con ReactJS",
         buttons: [
             {
                 text: "Ir a Alexander CD",

@@ -7,27 +7,26 @@ import React, { Component } from 'react';
 import {  
     GitHub as GitHubIcon
 } from '@material-ui/icons/'; 
-import Grid from '@material-ui/core/Grid';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import Grid from '@material-ui/core/Grid'; 
 import Avatar from '@material-ui/core/Avatar';
 import ImageIcon from '@material-ui/icons/Image';
 import {CardComponet} from '../component/Cards';
 import PokedexModel from '../../utils/pokedeex';
+import TextField from '@material-ui/core/TextField';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 
-/** Clase Contacto **/
+/** Clase Pokedex **/
 export class Pokedex extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            pokedex: []
+            pokedex: [],
+            pokemon: 1 + (Math.random() * (100-1))
         };       
     }
 
     componentWillMount(){
-        this.getPokedex(); 
+        //this.getPokedex(); 
     }
 
     /** Método del ciclos de vida de react para 
@@ -40,7 +39,7 @@ export class Pokedex extends Component {
     /**  **/
     getPokedex = async () => {
         try{
-            const {data} = await PokedexModel.get("?limit=100&offset=200");
+            const {data} = await PokedexModel.get("/" + this.state.pokemon);
             //console.info(data)
             this.setState({pokedex: data.results})
         }
@@ -54,28 +53,14 @@ export class Pokedex extends Component {
             classes
         } = this.props;
         return (
-            <div id="proyects" className={classes.backGroundSeccition}>
+            <div id="pokedex" className={classes.backGroundSeccition}>
                 <Grid container spacing={1}>
-                <Grid item md lg sm xs>  
-                    <CardComponet
-                        classes={classes}> 
-                        <List className={classes.rootList}>
-                            {this.state.pokedex.map((item, index) => (
-                                <ListItem>
-                                    <ListItemAvatar>
-                                        <Avatar
-                                         >
-                                            <ImageIcon />
-                                        </Avatar>
-                                    </ListItemAvatar>
-                                    <ListItemText 
-                                        className = {classes.content}
-                                        primary={item.name}  />
-                                </ListItem>
-                            ))}
-                        </List>
-                    </CardComponet>
-                    </Grid> 
+                    <Grid item md lg sm xs>
+                        <CardComponet
+                            classes={classes}>
+                            
+                        </CardComponet>
+                    </Grid>
                 </Grid>
             </div>
         );

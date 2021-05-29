@@ -176,6 +176,9 @@
     maxHeight: "80vh",
     backgroundColor: 'transparent', 
   },
+  autocompleted: {
+    
+  }
  }));
  
  export const useStyleSocial = makeStyles((theme) => ({
