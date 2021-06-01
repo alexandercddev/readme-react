@@ -15,8 +15,15 @@ import {
 } from '@material-ui/core/'; 
 import { 
     WebAsset as WebAssetIcon, 
+    ExpandMore as ExpandMoreIcon,
 } from '@material-ui/icons/';
 import SweetAlert from 'sweetalert2-react';
+import {
+    Accordion,
+    AccordionSummary,
+    AccordionDetails
+} from '@material-ui/core'; 
+import GrowDefault from './Transitions';
 
 /** Clase Card con imagen y botones **/
 export class CardListImage extends Component {
@@ -63,33 +70,53 @@ export class CardListImage extends Component {
     render() {
         const {
             classes,
-            items
+            items,
+            accordion
         } = this.props;
         return (
-            <>
+            <> 
                 {items.map((item, index) => (
                     <Grid item md lg sm xs key={"head" + index}>
-                        <Card className={classes.aboutMe}>
-                            <CardMedia
-                                className={classes.media}
-                                image={item.img}
-                                title={item.title}
-                                onClick={() => { this.handleAlert(item)}}
-                            />
-                            <CardActions className={classes.content || classes.cardAction}>
-                                {item.buttons.map((btn, i) => (
-                                    <Button
-                                        key={"btn" + i}
-                                        className={(btn.color === undefined) && classes.content}
-                                        size="small"
-                                        color= {(btn.color === undefined) ? 'default' : btn.color}
-                                        onClick={() => { this.handleOnClick(btn.url) }}
-                                        startIcon={(btn.icon === undefined) ? < WebAssetIcon /> : btn.icon}>
-                                        {btn.text}
-                                    </Button>
-                                ))}
-                            </CardActions>
-                        </Card>
+                        <GrowDefault>
+                            <Card className={classes.aboutMe}>
+                                <CardMedia
+                                    className={classes.media}
+                                    style={!accordion ? {backgroundSize: 'contain', margin: 10 } : null}
+                                    image={item.img}
+                                    title={item.title}
+                                    onClick={() => { this.handleAlert(item) }}
+                                />
+                                {accordion &&
+                                    <Accordion className={classes.aboutMe}>
+                                        <AccordionSummary
+                                            expandIcon={<ExpandMoreIcon />}
+                                            aria-controls="panel1a-content"
+                                            id="panel1a-header"
+                                        >
+                                            <Typography className={classes.heading}>{item.title}</Typography>
+                                        </AccordionSummary>
+                                        <AccordionDetails>
+                                            <Typography>
+                                                {item.desciption}
+                                            </Typography>
+                                        </AccordionDetails>
+                                    </Accordion>
+                                }
+                                <CardActions className={classes.content || classes.cardAction}>
+                                    {item.buttons.map((btn, i) => (
+                                        <Button
+                                            key={"btn" + i}
+                                            className={(btn.color === undefined) && classes.content}
+                                            size="small"
+                                            color={(btn.color === undefined) ? 'default' : btn.color}
+                                            onClick={() => { this.handleOnClick(btn.url) }}
+                                            startIcon={(btn.icon === undefined) ? < WebAssetIcon /> : btn.icon}>
+                                            {btn.text}
+                                        </Button>
+                                    ))}
+                                </CardActions>
+                            </Card>
+                        </GrowDefault>
                         <SweetAlert
                             type ={this.state.response.success ? 'info' : 'warning'}
                             show={this.state.show}
@@ -98,10 +125,14 @@ export class CardListImage extends Component {
                             onConfirm={this.handleAlert}
                         />
                     </Grid>
-                ))}
+                ))} 
             </>
         );
     }
+}
+
+CardListImage.defaultProps = {
+    accordion: false
 }
 
 /** Clase Card con componente hijo **/
@@ -124,16 +155,13 @@ export class CardComponet extends Component {
         } = this.props;
         return (
             <>
-                <Card className={classes.aboutMe}>
-                    <CardContent className={classes.content}>
-                        <Typography className={classes.content}
-                            variant="body2"
-                            color="textSecondary"
-                            component="p">
-                            {children}
-                        </Typography>
-                    </CardContent>
-                </Card>
+                <GrowDefault>
+                    <Card className={classes.aboutMe}>
+                        <CardContent className={classes.content}>
+                        {children}
+                        </CardContent>
+                    </Card>
+                </GrowDefault>
             </>
         );
     }

@@ -66,11 +66,29 @@ const items = [
     name: 'Recursos',
     icon: <DescriptionIcon /> 
   },
-  {
+  /*{
     key: 'contact',
     name: 'Contacto',
     icon: <ContactPhoneIcon /> 
-  }, 
+  }, */
+];
+
+const technologies = [
+  {
+    title: "SQL#",
+    img: "/img/csharp.png",
+    desciption: "Desarrollo en .Net",
+  },
+  {
+    title: "C#",
+    img: "/img/csharp.png",
+    desciption: "Desarrollo en .Net",
+  },
+  {
+    title: "ReactJS",
+    img: "/img/reactjs.png",
+    desciption: "Desarrollo en .Net",
+  },
 ];
 
 /** Clase portafolio **/
@@ -78,11 +96,9 @@ export class Briefcase extends Component {
   constructor(props){
     super(props);
     this.state = { 
-      classes: this.props.classes,
       open: false,
-      theme: this.props.theme,
       year: (new Date().getFullYear()),
-      component: "home",
+      component: localStorage.getItem('selected') ?? "home",
     }; 
   }
 
@@ -111,9 +127,10 @@ export class Briefcase extends Component {
   /** Render views **/
   renderComponent () {
     let {component} = this.state;
-    let {classesCard} = this.props;
+    let {classesCard, classesPokedex, theme} = this.props;
+    localStorage.setItem('selected', component);
     switch (component) {
-      case "home":
+      case "home": 
         return <HomeCard classes = {classesCard}/>;
       case "about-me":
         return <AboutMe classes = {classesCard}/>;
@@ -124,20 +141,25 @@ export class Briefcase extends Component {
       case "contact":
         return <Contact classes = {classesCard}/>;
       case "pokedex":
-        return <Pokedex classes = {classesCard}/>; 
+        return <Pokedex theme = {theme} classes = {classesCard} classesPokedex = {classesPokedex}/>; 
       default:
+        localStorage.setItem('selected', null)
         break;
     }
   }
   render(){
     console.info("render") 
+    const {
+      classes, 
+      theme
+    } = this.props;
     return (
-      <div className={this.state.classes.root}> 
+      <div className={classes.root}> 
       <CssBaseline />
       <AppBar
         position="fixed"
-        className={clsx(this.state.classes.appBar, {
-          [this.state.classes.appBarShift]: this.state.open,
+        className={clsx(classes.appBar, {
+          [classes.appBarShift]: this.state.open,
         })}
       >  
         <Toolbar>
@@ -159,11 +181,11 @@ export class Briefcase extends Component {
           <Typography 
             variant="h6" 
             noWrap 
-            className={this.state.classes.title}>
+            className={classes.title}>
             Alexander CD
           </Typography>
           <div 
-            className={clsx(this.state.classes.navDesktop)}>
+            className={clsx(classes.navDesktop)}>
             {items.map((item, index) => (
               <Button 
                 key={item.key}
@@ -180,24 +202,24 @@ export class Briefcase extends Component {
             edge="end"
             onClick={this.handleDrawerOpen}
             className={
-              clsx(this.state.open && this.state.classes.hide || this.state.classes.navMobile)
+              clsx(this.state.open && classes.hide || classes.navMobile)
             }>
             <MenuIcon />
           </IconButton>
         </Toolbar>
       </AppBar>
       <Drawer
-        className={this.state.classes.drawer}
+        className={classes.drawer}
         variant="persistent"
         anchor="left"
         open={this.state.open}
         classes={{
-          paper: this.state.classes.drawerPaper,
+          paper: classes.drawerPaper,
         }}
       >
-        <div className={this.state.classes.drawerHeader}>
+        <div className={classes.drawerHeader}>
           <IconButton onClick={this.handleDrawerClose}>
-            {this.state.theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+            {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>
         </div>
         <Divider />
@@ -218,11 +240,11 @@ export class Briefcase extends Component {
         </ListItem>
       </Drawer>  
       <main
-        className={clsx(this.state.classes.content, {
-          [this.state.classes.contentShift]: this.state.open,
+        className={clsx(classes.content, {
+          [classes.contentShift]: this.state.open,
         })}
       >  
-        <div className={this.state.classes.drawerHeader} /> 
+        <div className={classes.drawerHeader} /> 
         { this.renderComponent() } 
       </main> 
     </div>

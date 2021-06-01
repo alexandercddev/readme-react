@@ -14,7 +14,8 @@ import {
     LinkedIn as LinkedInIcon,
     YouTube as YouTubeIcon,
     Settings as SettingsIcon,
-    BugReport as BugReportIcon
+    BugReport as BugReportIcon,
+    Storage as StorageIcon
 } from '@material-ui/icons/';
 import { Avatar } from '@material-ui/core/';  
 import Grid from '@material-ui/core/Grid';   
@@ -22,6 +23,7 @@ import {
     CardListImage,
     CardComponet,
 } from '../component/Cards';
+import GrowDefault from '../component/Transitions';
 
 /** Items de CardImage en component **/
 const items = [
@@ -87,58 +89,57 @@ export class AboutMe extends Component {
             <div id = "about-me" className={classes.backGroundSeccition}>
                 <Grid container spacing={2} className={classes.gridContent}>
                     <Grid item > 
-                        <Avatar
-                            className={classes.porfile}
-                            aria-label="Logo de AlexanderCD"
-                            aria-controls="menu-appbar"
-                            aria-haspopup="true"
-                            alt="Logo"
-                            src="/img/logo.png" />
+                        <GrowDefault>
+                            <Avatar
+                                className={classes.porfile}
+                                aria-label="Logo de AlexanderCD"
+                                aria-controls="menu-appbar"
+                                aria-haspopup="true"
+                                alt="Logo"
+                                src="/img/logo.png" />
+                        </GrowDefault>
                     </Grid>
                     <Grid item md lg sm>  
-                        <Card className={classes.aboutMe}>
-                            <CardContent className={classes.content}>
-                                <Typography 
-                                    variant="h5"
-                                    component="h2" >
-                                    Sobre mí
-                                </Typography>
-                                <Typography className={classes.content}
-                                    variant="body2"
-                                    color="textSecondary"
-                                    component="p">
-                                    Hola, Soy Alexander, desarrollador {" "}
-                                    <Chip 
-                                        className={classes.chipColor}
-                                        variant="outlined"
-                                        color="primary"
-                                        size="small"
-                                        icon={<FaceIcon />}
-                                        label=" frontend "
-                                    />
-                                    {" "} y {" "}
+                        <GrowDefault>
+                            <Card className={classes.aboutMe}>
+                                <CardContent className={classes.content}>
+                                    <Typography
+                                        variant="h5"
+                                        component="h2" >
+                                        Sobre mí
+                                    </Typography>
+                                    Hola, Soy Alexander, desarrollador
                                     <Chip
-                                        className={classes.chipColor}
-                                        variant="outlined"
-                                        color="primary"
-                                        size="small"
-                                        icon={<BugReportIcon />}
-                                        label=" backend "
-                                    />
-                                    {" "}lo que muchos conocen como {" "}
+                                            className={classes.chipColor}
+                                            variant="outlined"
+                                            color="primary"
+                                            size="small"
+                                            icon={<FaceIcon />}
+                                            label=" frontend "
+                                        />
+                                    y
                                     <Chip
-                                        className={classes.chipColor}
-                                        variant="outlined"
-                                        color="primary"
-                                        size="small"
-                                        icon={<SettingsIcon />}
-                                        label=" fullstack "
-                                    />
-                                    {" "}con más de 3 años de experiencia en el mundo
+                                            className={classes.chipColor}
+                                            variant="outlined"
+                                            color="primary"
+                                            size="small"
+                                            icon={<BugReportIcon />}
+                                            label=" backend "
+                                        />
+                                    lo que muchos conocen como
+                                    <Chip
+                                            className={classes.chipColor}
+                                            variant="outlined"
+                                            color="primary"
+                                            size="small"
+                                            icon={<SettingsIcon />}
+                                            label=" fullstack "
+                                        />
+                                    con más de 3 años de experiencia en el mundo
                                     del desarrollo web.
-                                </Typography>
-                            </CardContent>
-                        </Card>
+                                </CardContent>
+                            </Card>
+                        </GrowDefault>
                         <CardComponet
                             classes = {classes} 
                         >
@@ -148,13 +149,46 @@ export class AboutMe extends Component {
                         <CardComponet
                             classes = {classes} 
                         >
+                            Tecnologías
+                            <Chip
+                                className={classes.chipColor}
+                                variant="outlined"
+                                color="primary"
+                                size="small"
+                                icon={<StorageIcon />}
+                                label=" base de datos "
+                            />
+                            SQL, SAP HANA, Postgres. 
+                            para 
+                            <Chip
+                                className={classes.chipColor}
+                                variant="outlined"
+                                color="primary"
+                                size="small"
+                                icon={<FaceIcon />}
+                                label=" frontend "
+                            />
+                            JQuery, ReactJS y para el
+                            <Chip
+                                className={classes.chipColor}
+                                variant="outlined"
+                                color="primary"
+                                size="small"
+                                icon={<BugReportIcon />}
+                                label=" backend "
+                            />
+                            C#, NodeJS, PHP (Laravel).
+                        </CardComponet>  
+                        <CardComponet
+                            classes = {classes} 
+                        >
                             En mi tiempo libre creo contenido para quienes 
                             comienzan en el mundo de la programación.
                         </CardComponet>  
                         <Grid container spacing={3}>
                             <CardListImage
                                 classes = {classes}
-                                items = {items}
+                                items = {items} 
                             />
                         </Grid>
                     </Grid> 

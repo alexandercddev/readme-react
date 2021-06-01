@@ -15,7 +15,7 @@ const items = [
     {
         title: "Miel Roche",
         img: "/img/Banner-Principal-Miel-Roche.png",
-        desciption: "Sitio realizado con Wordpress",
+        desciption: "Sitio realizado con Wordpress y Elementor",
         buttons: [
             {
                 text: "Ir a Miel Roche",
@@ -24,9 +24,9 @@ const items = [
         ]
     },
     {
-        title: "Nuevo proyecto",
+        title: "Alexander CD",
         img: "/img/logo.png",
-        desciption: "Sitio realizado con ReactJS",
+        desciption: "Sitio realizado con ReactJS, Material UI, SweetAlert2",
         buttons: [
             {
                 text: "Ir a Alexander CD",
@@ -70,6 +70,7 @@ export class Proyects extends Component {
                     <CardListImage
                         classes={classes}
                         items={items}
+                        accordion = {true}
                     />
                 </Grid>
             </div>

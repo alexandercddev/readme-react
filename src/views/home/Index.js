@@ -9,7 +9,8 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography'; 
 import { Avatar } from '@material-ui/core/';  
 import Grid from '@material-ui/core/Grid';   
- 
+import GrowDefault from '../component/Transitions';
+
  /** Clase home **/
 export class HomeCard extends Component {
   constructor(props){
@@ -33,24 +34,40 @@ export class HomeCard extends Component {
         <Grid container spacing={3}>
           <Grid item md lg sm> </Grid> 
           <Grid item md lg sm>  
-          <Avatar
-              className ={classes.avatar}
-              aria-label="Logo de AlexanderCD"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              alt="Logo"
-              src="/img/logo.png"
-            />
-            <Card className={classes.root}>  
-              <CardContent className={classes.content}>  
-                <Typography
-                  style={{textAlign: 'center',}}
-                  variant="h5"
-                  component="h2" > 
-                  Desarrollador fullstack
-                </Typography> 
-              </CardContent>
-            </Card>
+            <GrowDefault>
+              <Avatar
+                className={classes.avatar}
+                aria-label="Logo de AlexanderCD"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                alt="Logo"
+                src="/img/logo.png"
+              />
+            </GrowDefault>
+            <GrowDefault>
+              <Card className={classes.root}>
+                <CardContent className={classes.content}>
+                  <Typography
+                    style={{ textAlign: 'center', }}
+                    variant="h5"
+                    component="h2" >
+                    Desarrollador fullstack
+                </Typography>
+                  <Typography
+                    style={{ textAlign: 'center', }}
+                    variant="body2"
+                    component="p" >
+                    SAP HANA, C#, Jquery
+                </Typography>
+                  <Typography
+                    style={{ textAlign: 'center', }}
+                    variant="body2"
+                    component="p" >
+                    SQL, C#, ReactJS
+                </Typography>
+                </CardContent>
+              </Card>
+            </GrowDefault>
           </Grid>
           <Grid item md lg sm> </Grid>
         </Grid>
