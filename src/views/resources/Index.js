@@ -86,7 +86,7 @@ export class Resources extends Component {
         } = this.props;
         return (
             <div id="resources" className={classes.backGroundSeccition}>
-                <Grid container spacing={2}>
+                <Grid container spacing={3}>
                     <CardListImage
                         classes={classes}
                         items={items}

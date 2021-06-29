@@ -76,7 +76,7 @@ export class CardListImage extends Component {
         return (
             <> 
                 {items.map((item, index) => (
-                    <Grid item md lg sm xs key={"head" + index}>
+                    <Grid item md lg sm xs key={"head" + item.key + index}>
                         <GrowDefault>
                             <Card className={classes.aboutMe}>
                                 <CardMedia

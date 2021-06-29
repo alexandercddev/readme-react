@@ -4,6 +4,7 @@
  * @date: 23/05/2021
  **/
 import React, {Component} from 'react'; 
+import { useLocation } from 'react-router-dom';
 import clsx from 'clsx';  
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -91,6 +92,11 @@ const technologies = [
   },
 ];
 
+function Location(){
+  const location = useLocation();
+  return true;
+}
+
 /** Clase portafolio **/
 export class Briefcase extends Component {
   constructor(props){
@@ -100,6 +106,7 @@ export class Briefcase extends Component {
       year: (new Date().getFullYear()),
       component: localStorage.getItem('selected') ?? "home",
     }; 
+    console.info(this.props)
   }
 
   /** Método del ciclos de vida de react para 

@@ -9,14 +9,16 @@ import { useTheme } from '@material-ui/core/styles';
 import { useStyleMain, useStyleCard, useStylesPokedex } from './utils/Style';
 import clsx from 'clsx';  
 
-function App() {
+
+function App(props) {
   const classes = useStyleMain();
   const theme = useTheme(); 
   const classesCard = useStyleCard(); 
   const classesPokedex = useStylesPokedex();
+  //
   return (
     <div className ={clsx(classes.parallax)}>
-      <Briefcase
+      <Briefcase 
         classes = {classes}
         classesCard = {classesCard} 
         classesPokedex = {classesPokedex}
