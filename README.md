@@ -1,6 +1,3 @@
-# Portafolio
-
-
 # ![Readme react](https://raw.githubusercontent.com/alexandercds/readme-react/master/src/assets/images/preview.jpg)
 # Readme React
 <table>
@@ -24,6 +21,7 @@ If you find a bug, kindly open an issue [here](https://github.com/alexandercds/r
 - [REACTJS](https://reactjs.org/)
 - [SASS](https://sass-lang.com/)
 - [MATERIAL UI](https://mui.com/es/)
+- [POKE API](https://pokeapi.co/)
 
 
 © [Alexander Chi ](https://alexandercd.dev/)
